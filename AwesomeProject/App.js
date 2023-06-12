@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 
-import RegistrationScreen from "./Screens/RegistrationScreen.jsx";
-import LoginScreen from "./Screens/LoginScreen.jsx";
-
+import { NavigationContainer } from "@react-navigation/native";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
+import { useRoute } from "./router";
 
 const loadFonts = async () => {
   await Font.loadAsync({
@@ -15,6 +14,7 @@ const loadFonts = async () => {
 };
 export default function App() {
   const [isReady, setIsReady] = useState(false);
+  const routing = useRoute(true);
 
   if (!isReady) {
     return (
@@ -28,8 +28,7 @@ export default function App() {
 
   return (
     <>
-      <LoginScreen />
-      {/* <RegistrationScreen /> */}
+      <NavigationContainer>{routing}</NavigationContainer>
     </>
   );
 }
